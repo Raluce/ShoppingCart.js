@@ -1,4 +1,6 @@
-# ShoppingCart.js
+# ShoppingCart.js [![Build Status](https://travis-ci.org/Raluce/ShoppingCart.js.svg?branch=master)](https://travis-ci.org/Raluce/ShoppingCart.js)
+
+
 
 Easily manage multiple shopping carts in a single session. ShoppingCart.js takes care mananging your sessions storage, serializing and deserializing your cart data so you that you can focus on your real work.
 
