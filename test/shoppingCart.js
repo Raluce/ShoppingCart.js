@@ -9,13 +9,19 @@ describe('ShoppingCart', () => {
     price: { currency: 'usd', cost: 21.23 }
   }
 
+  const product2 = {
+    id: '1B',
+    name: 'Taco',
+    price: { currency: 'usd', cost: 21.23 }
+  }
+
   before(() => {
     global.sessionStorage = sessionStorageMock;
     
   });
 
   it('Should add product to shopping cart', () => {
-    ShoppingCart.add('store1', product);
+    ShoppingCart.add('store1', product);    
     ShoppingCart.add('store2', []);
     const result = ShoppingCart.get('store1');
     
@@ -33,8 +39,8 @@ describe('ShoppingCart', () => {
   });
 
   it('Should remove product from shopping cart', () => {
-    ShoppingCart.remove('storeId', product.id);
-    const result = ShoppingCart.get('storeId');
+    ShoppingCart.remove('store1', product.id);
+    const result = ShoppingCart.get('store1');
 
     result.should.be.instanceof(Array).and.have.lengthOf(0);
   });

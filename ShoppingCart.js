@@ -11,15 +11,6 @@ ShoppingCart = function() {
   };
 
   /**
-   * Overrides shopping cart with given productList
-   * @param {String} storeId Unique identifier to current store
-   * @param {Array} productList Product list to replace shopping cart with
-   */
-  var set = function(storeId, productList) {
-    sessionStorage.setItem(storeId, JSON.stringify(productList));
-  }
-
-  /**
    * Removes first instance of product in store's shopping cart
    * @param {String} productId Item to remvoe from cart
    */
@@ -28,8 +19,8 @@ ShoppingCart = function() {
     var productIndex = getProductIndexById(productList, productId);
 
     if(productIndex !== -1) {
-      productList.slice(productIndex, 1);
-      set(productList);
+      productList.splice(productIndex, 1);
+      sessionStorage.setItem(storeId, JSON.stringify(productList));
     }
   };
   
