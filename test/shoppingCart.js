@@ -31,4 +31,11 @@ describe('ShoppingCart', () => {
     result[0].price.currency.should.equal(product.price.currency);
     result[0].price.cost.should.equal(product.price.cost);
   });
+
+  it('Should remove product from shopping cart', () => {
+    ShoppingCart.remove('storeId', product.id);
+    const result = ShoppingCart.get('storeId');
+
+    result.should.be.instanceof(Array).and.have.lengthOf(0);
+  });
 });
