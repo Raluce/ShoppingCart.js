@@ -1,0 +1,32 @@
+{
+  "name": "shoppingcart",
+  "version": "1.0.0",
+  "description": "Easily manage multiple shopping carts in a single session. ShoppingCart.js takes care mananging your sessions storage, serializing and deserializing your cart data so you that you can focus on your real work.",
+  "main": "ShoppingCart.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^5.0.0",
+    "should": "^13.2.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raluce/ShoppingCart.js.git"
+  },
+  "keywords": [
+    "Shopping",
+    "Cart",
+    "Raluce"
+  ],
+  "author": "Camilo Gonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Raluce/ShoppingCart.js/issues"
+  },
+  "homepage": "https://github.com/Raluce/ShoppingCart.js#readme"
+}
