@@ -28,24 +28,24 @@ At this point, you will now have access to the shopping cart through the variabl
 
 ### Usage
 
-**Note:** Every shopping cart is uniquely identified by a `storeId`. This is done so that you can handle shopping carts for different stores at the same time without overwritting each other.
+**Note:** Every shopping cart is uniquely identified by a `storeId`. This is done so that you can handle shopping carts for different stores at the same time without overwritting each other. Each product **must** have a unique `id` string property.
 
 #### Adding a product to a shopping cart
 ```javascript
-var product = {name:'Pizza slice', 'price': 2.99};
+var product = {id: 'product1', name:'Pizza slice', 'price': 2.99};
 ShoppingCart.add('store1', product);
 ```
 
 #### getting all products from a shopping cart
 ```javascript
 var products = ShoppingCart.get('store1');
-// products: [{name:'Pizza slice', 'price': 2.99}]
+// products: [{id: 'product1', name:'Pizza slice', 'price': 2.99}]
 ```
 
 #### Removing a product from the shopping cart
 ```javascript
-var product = {name:'Pizza slice', 'price': 2.99};
-ShoppingCart.remove('store1', product);
+var productId = 'product1';
+ShoppingCart.remove('store1', productId);
 ```
 
 ## License
