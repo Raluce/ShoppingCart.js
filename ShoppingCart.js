@@ -30,6 +30,10 @@ ShoppingCart = function() {
    */
   var get = function(storeId) {
     var productString = sessionStorage.getItem(storeId);
+
+    if(!productString) {
+      return [];
+    }
     
     try {
       var productList = JSON.parse(productString);
