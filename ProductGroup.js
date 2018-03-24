@@ -3,3 +3,7 @@ ProductGroup = function ProductGroup(product) {
   this.product = product;
   this.count = 1;
 };
+
+ProductGroup.prototype.setCount = function(count) {
+  this.count = count;
+}
