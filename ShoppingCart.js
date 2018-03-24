@@ -12,11 +12,12 @@ ShoppingCart = function() {
     if(productGroupIndex !== -1) {
       productGroup = productGroupList[productGroupIndex];
       productGroup.count += 1;
+      productGroupList[productGroupIndex] = productGroup;
     } else {
       productGroup = new ProductGroup(product);
+      productGroupList.push(productGroup);
     }
     
-    productGroupList.push(productGroup);
     sessionStorage.setItem(storeId, JSON.stringify(productGroupList));
   };
 
@@ -25,13 +26,20 @@ ShoppingCart = function() {
    * @param {String} productId Item to remvoe from cart
    */
   var remove = function(storeId, productId) {
-    var productList = get(storeId);
-    var productIndex = getProductIndexById(productList, productId);
+    var productGroupList = get(storeId);
+    var productGroupIndex = getProductGroupIndex(storeId, productId);
 
-    if(productIndex !== -1) {
-      productList.splice(productIndex, 1);
-      sessionStorage.setItem(storeId, JSON.stringify(productList));
+    if(productGroupIndex == -1) return;
+    
+    var productGroup = productGroupList[productGroupIndex];
+    if(productGroup.count === 1) {
+      productGroupList.splice(productGroupIndex, 1);
+    } else {
+      productGroup.count -= 1;
+      productGroupList[productGroupIndex] = productGroup;
     }
+
+    sessionStorage.setItem(storeId, JSON.stringify(productGroupList));
   };
   
   /**

@@ -9,8 +9,13 @@ module.exports = (() => {
     store[key] = data;
   };
 
+  const clear = () => {
+    store = {};
+  }
+
   return {
     getItem,
-    setItem
+    setItem,
+    clear,
   }
 })();
