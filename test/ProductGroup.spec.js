@@ -30,4 +30,10 @@ describe('Product Group', () => {
     productGroup.product.price.currency.should.equal(product.price.currency);
     productGroup.product.properties.description.should.equal(product.properties.description);
   });
+
+  it('Should update a product group count', () => {
+    productGroup.setCount(10);
+
+    productGroup.count.should.equal(10);
+  });
 });
