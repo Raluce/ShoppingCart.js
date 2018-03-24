@@ -22,7 +22,7 @@ ShoppingCart = function() {
   };
 
   /**
-   * Removes first instance of product in store's shopping cart
+   * Removes a product in store's shopping cart
    * @param {String} productId Item to remvoe from cart
    */
   var remove = function(storeId, productId) {
@@ -43,7 +43,7 @@ ShoppingCart = function() {
   };
   
   /**
-   * Get all products in store's shopping cart
+   * Get all product groups in store's shopping cart
    * @param {String} storeId Unique identifier to current store
    */
   var get = function(storeId) {
@@ -71,21 +71,6 @@ ShoppingCart = function() {
 
     for(var i = 0; i < productGroupList.length; i++) {
       if(productGroupList[i].id === productId) return i;
-    }
-
-    return -1;
-  }
-
-  /**
-   * Gets id of product in a product list. Returns -1 if product not found
-   * @param {Array} productList List of products to look in
-   * @param {Object} productId Product Id to look in product list
-   */
-  var getProductIndexById = function(productList, productId) {
-    for(var i = 0; i < productList.length; i++) {
-      if(productList[i].id === productId) {
-        return i;
-      }
     }
 
     return -1;
