@@ -1,4 +1,4 @@
-function Product(product) {
+Product = function Product(product) {
   if (!product.id) throw new Error('product[id] is required');
   
   this.id = product.id;
