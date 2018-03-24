@@ -5,5 +5,5 @@ ProductGroup = function ProductGroup(product) {
 };
 
 ProductGroup.prototype.setCount = function(count) {
-  this.count = count;
+  this.count = count < 1 ? 1 : count;
 }
