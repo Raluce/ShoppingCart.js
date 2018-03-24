@@ -5,9 +5,19 @@ ShoppingCart = function() {
    * @param {Object} product Item to add to cart
    */
   var add = function(storeId, product) {
-    var productList = get(storeId);
-    productList.push(product);
-    sessionStorage.setItem(storeId, JSON.stringify(productList));
+    var productGroupList = get(storeId);
+    var productGroupIndex = getProductGroupIndex(storeId, product.id)
+    var productGroup = null;
+
+    if(productGroupIndex !== -1) {
+      productGroup = productGroupList[productGroupIndex];
+      productGroup.count += 1;
+    } else {
+      productGroup = new ProductGroup(product);
+    }
+    
+    productGroupList.push(productGroup);
+    sessionStorage.setItem(storeId, JSON.stringify(productGroupList));
   };
 
   /**
@@ -29,19 +39,34 @@ ShoppingCart = function() {
    * @param {String} storeId Unique identifier to current store
    */
   var get = function(storeId) {
-    var productString = sessionStorage.getItem(storeId);
+    var productGroupsListString = sessionStorage.getItem(storeId);
 
-    if(!productString) {
+    if(!productGroupsListString) {
       return [];
     }
     
     try {
-      var productList = JSON.parse(productString);
-      return productList;
+      return JSON.parse(productGroupsListString);
     } catch(e) {
       return [];
     }
   };
+
+  /**
+   * Gets a single product group index from a store's shopping cart.
+   * Returns -1 if not found
+   * @param {String} storeId Unique identifier to current store
+   * @param {String} productId Id of product group to find
+   */
+  var getProductGroupIndex = function(storeId, productId) {
+    var productGroupList = get(storeId);
+
+    for(var i = 0; i < productGroupList.length; i++) {
+      if(productGroupList[i].id === productId) return i;
+    }
+
+    return -1;
+  }
 
   /**
    * Gets id of product in a product list. Returns -1 if product not found
