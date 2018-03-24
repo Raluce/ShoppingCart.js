@@ -36,4 +36,10 @@ describe('Product Group', () => {
 
     productGroup.count.should.equal(10);
   });
+
+  it('Should prevent a product group count less than 1', () => {
+    productGroup.setCount(-10);
+
+    productGroup.count.should.equal(1);
+  })
 });
