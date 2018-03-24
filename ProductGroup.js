@@ -1,0 +1,5 @@
+ProductGroup = function ProductGroup(product) {
+  this.id = product.id;
+  this.product = product;
+  this.count = 1;
+};
