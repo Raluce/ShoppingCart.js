@@ -1,7 +1,7 @@
 const should = require('should');
 require('./../Product');
 
-describe('Product Group', () => {
+describe('Product', () => {
   const productData = {
     id: '1a',
     name: 'chicken',

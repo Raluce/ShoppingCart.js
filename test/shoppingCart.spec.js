@@ -4,7 +4,7 @@ require('./../ShoppingCart');
 require('./../Product');
 require('./../ProductGroup');
 
-describe('ShoppingCart', () => {
+describe('Shopping Cart', () => {
   var product1 = null;
   var product2 = null;
 
