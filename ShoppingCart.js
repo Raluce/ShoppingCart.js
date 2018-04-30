@@ -5,41 +5,22 @@ ShoppingCart = function() {
    * @param {Object} product Item to add to cart
    */
   var add = function(storeId, product) {
-    var productGroupList = get(storeId);
-    var productGroupIndex = getProductGroupIndex(storeId, product.id)
-    var productGroup = null;
-
-    if(productGroupIndex !== -1) {
-      productGroup = productGroupList[productGroupIndex];
-      productGroup.count += 1;
-      productGroupList[productGroupIndex] = productGroup;
-    } else {
-      productGroup = new ProductGroup(product);
-      productGroupList.push(productGroup);
-    }
+    var productsList = get(storeId);
+    productsList.push(product);
     
-    sessionStorage.setItem(storeId, JSON.stringify(productGroupList));
+    sessionStorage.setItem(storeId, JSON.stringify(productsList));
   };
 
   /**
    * Removes a product in store's shopping cart
    * @param {String} productId Item to remvoe from cart
    */
-  var remove = function(storeId, productId) {
-    var productGroupList = get(storeId);
-    var productGroupIndex = getProductGroupIndex(storeId, productId);
+  var remove = function(storeId, index) {
+    var productsList = get(storeId);
+    if(index > productsList.length) return false;
 
-    if(productGroupIndex == -1) return;
-    
-    var productGroup = productGroupList[productGroupIndex];
-    if(productGroup.count === 1) {
-      productGroupList.splice(productGroupIndex, 1);
-    } else {
-      productGroup.count -= 1;
-      productGroupList[productGroupIndex] = productGroup;
-    }
-
-    sessionStorage.setItem(storeId, JSON.stringify(productGroupList));
+    productsList.splice(index, 1);
+    sessionStorage.setItem(storeId, JSON.stringify(productsList));
   };
   
   /**
@@ -47,34 +28,18 @@ ShoppingCart = function() {
    * @param {String} storeId Unique identifier to current store
    */
   var get = function(storeId) {
-    var productGroupsListString = sessionStorage.getItem(storeId);
+    var productsListString = sessionStorage.getItem(storeId);
 
-    if(!productGroupsListString) {
+    if(!productsListString) {
       return [];
     }
     
     try {
-      return JSON.parse(productGroupsListString);
+      return JSON.parse(productsListString);
     } catch(e) {
       return [];
     }
   };
-
-  /**
-   * Gets a single product group index from a store's shopping cart.
-   * Returns -1 if not found
-   * @param {String} storeId Unique identifier to current store
-   * @param {String} productId Id of product group to find
-   */
-  var getProductGroupIndex = function(storeId, productId) {
-    var productGroupList = get(storeId);
-
-    for(var i = 0; i < productGroupList.length; i++) {
-      if(productGroupList[i].id === productId) return i;
-    }
-
-    return -1;
-  }
 
   return {
     add: add,

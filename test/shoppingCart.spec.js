@@ -2,7 +2,6 @@ const should = require('should');
 const sessionStorageMock = require('./mocks/sessionStorage');
 require('./../ShoppingCart');
 require('./../Product');
-require('./../ProductGroup');
 
 describe('Shopping Cart', () => {
   var product1 = null;
@@ -15,7 +14,22 @@ describe('Shopping Cart', () => {
       id: '1a',
       name: 'chicken',
       properties: {
-        description: 'best chicken ever'
+        description: 'best chicken ever',
+        options: {
+          _id: 'option1',
+          name: 'What size?',
+          choices: [
+            {
+              _id: 'normal',
+              name: 'Normal',
+              description: 'normal',
+              price: {
+                amount: 0,
+                currency: 'usd'
+              }
+            }
+          ],
+        }
       },
       price: {
         cost: 9.99,
@@ -28,7 +42,8 @@ describe('Shopping Cart', () => {
       id: '1b',
       name: 'beef',
       properties: {
-        description: 'best beef ever'
+        description: 'best beef ever',
+        options: [],
       },
       price: {
         cost: 4.99,
@@ -49,16 +64,11 @@ describe('Shopping Cart', () => {
    results.should.be.instanceof(Array).and.have.lengthOf(1);
   });
 
-  it('Should keep count of product repetitions', () => {
+  it('Should get shopping cart from a storeId', () => {
     ShoppingCart.add('store1', new Product(product1));
-    ShoppingCart.add('store1', new Product(product1));
-    ShoppingCart.add('store1', new Product(product1));
-    ShoppingCart.add('store1', new Product(product2));
     
     const results = ShoppingCart.get('store1');
-    results.should.be.instanceof(Array).and.have.lengthOf(2);
-    results[0].count.should.equal(3);
-    results[1].count.should.equal(1);
+    results.should.be.instanceof(Array).and.have.lengthOf(1);
   });
 
   it('Should remove product from shopping cart', () => {
@@ -66,12 +76,10 @@ describe('Shopping Cart', () => {
     ShoppingCart.add('store1', new Product(product2));
     ShoppingCart.add('store1', new Product(product2));
     
-    ShoppingCart.remove('store1', product1.id);
-    ShoppingCart.remove('store1', product2.id);
+    ShoppingCart.remove('store1', 0);
     
     const results = ShoppingCart.get('store1');
-    results.should.be.instanceof(Array).and.have.lengthOf(1);
+    results.should.be.instanceof(Array).and.have.lengthOf(2);
     results[0].id.should.equal(product2.id);
-    results[0].count.should.equal(1);
   });
 });
