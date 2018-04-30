@@ -15,21 +15,23 @@ describe('Shopping Cart', () => {
       name: 'chicken',
       properties: {
         description: 'best chicken ever',
-        options: {
-          _id: 'option1',
-          name: 'What size?',
-          choices: [
-            {
-              _id: 'normal',
-              name: 'Normal',
-              description: 'normal',
-              price: {
-                amount: 0,
-                currency: 'usd'
+        options: [
+          {
+            _id: 'option1',
+            name: 'What size?',
+            choices: [
+              {
+                _id: 'normal',
+                name: 'Normal',
+                description: 'normal',
+                price: {
+                  amount: 0,
+                  currency: 'usd'
+                }
               }
-            }
-          ],
-        }
+            ],
+          }
+        ]
       },
       price: {
         cost: 9.99,

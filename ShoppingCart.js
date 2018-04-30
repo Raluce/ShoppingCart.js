@@ -13,7 +13,7 @@ ShoppingCart = function() {
 
   /**
    * Removes a product in store's shopping cart
-   * @param {String} productId Item to remvoe from cart
+   * @param {Number} index Index of product in shopping cart to remove
    */
   var remove = function(storeId, index) {
     var productsList = get(storeId);

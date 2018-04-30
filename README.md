@@ -44,8 +44,9 @@ var products = ShoppingCart.get('store1');
 
 #### Removing a product from the shopping cart
 ```javascript
-var productId = 'product1';
-ShoppingCart.remove('store1', productId);
+// products [{id: 1, ...}, {id: 2, ...}]
+var productIndex = 0;
+ShoppingCart.remove('store1', index);
 ```
 
 ## License
